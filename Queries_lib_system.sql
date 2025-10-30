@@ -1,0 +1,20 @@
+# Q. List all book titles written by “Jane Austen”.
+SELECT TITLE
+FROM BOOKS
+JOIN AUTHOR
+ON BOOKS.AUTHOR_ID = AUTHOR.AUTHOR_ID
+WHERE AUTHOR_NAME = 'Jane Austen'; 
+# Q. Find members who have borrowed more than 3 books.
+SELECT MEMBER_NAME 
+FROM MEMBER M
+JOIN ISSUE_RETURN I 
+ON M.MEMBER_ID = I.MEMBER_ID
+GROUP BY M.MEMBER_NAME
+HAVING COUNT(I.BOOK_ID)>3;
+
+# Q. Get books along with their publisher names.
+SELECT TITLE,P.PUBLISHER_NAME 
+FROM BOOKS B
+JOIN PUBLISHER P
+ON B.PUBLISHER_ID = P.PUBLISHER_ID;
+# Q.
