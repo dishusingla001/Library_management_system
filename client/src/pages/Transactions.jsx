@@ -200,12 +200,11 @@ function Transactions() {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>User</th>
+                <th>Member</th>
                 <th>Book</th>
                 <th>Issue Date</th>
                 <th>Due Date</th>
                 <th>Return Date</th>
-                <th>Fine</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
@@ -214,26 +213,11 @@ function Transactions() {
               {transactions.map((transaction) => (
                 <tr key={transaction.id}>
                   <td>{transaction.id}</td>
-                  <td>
-                    <div>
-                      <div>{transaction.full_name}</div>
-                      <div style={{ fontSize: '12px', color: '#7f8c8d' }}>
-                        ({transaction.username})
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div>
-                      <div>{transaction.book_title}</div>
-                      <div style={{ fontSize: '12px', color: '#7f8c8d' }}>
-                        by {transaction.book_author}
-                      </div>
-                    </div>
-                  </td>
+                  <td>{transaction.user_name || 'N/A'}</td>
+                  <td>{transaction.book_title || 'N/A'}</td>
                   <td>{new Date(transaction.issue_date).toLocaleDateString()}</td>
                   <td>{new Date(transaction.due_date).toLocaleDateString()}</td>
                   <td>{transaction.return_date ? new Date(transaction.return_date).toLocaleDateString() : 'Not returned'}</td>
-                  <td>${transaction.fine || 0}</td>
                   <td>
                     <span className={`badge ${getStatusBadge(transaction.status, transaction.due_date, transaction.return_date)}`}>
                       {getStatusText(transaction.status, transaction.due_date, transaction.return_date)}
@@ -241,7 +225,7 @@ function Transactions() {
                   </td>
                   <td>
                     <div className="table-actions">
-                      {transaction.status === 'issued' && (
+                      {!transaction.return_date && (
                         <button 
                           className="btn btn-success" 
                           onClick={() => openReturnModal(transaction)}

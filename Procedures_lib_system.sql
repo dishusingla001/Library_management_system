@@ -17,7 +17,7 @@ DELIMITER ;
 
 SELECT * FROM BOOKS;
 DESC BOOKS;
-CALL AddBook('9781234567890', 'The Secret Garden','Available', 1, 2);
+CALL AddBook('9781234567892', 'Question Are Answers','Available', 6, 3);
 
 -- Add a New Member --
 DELIMITER $$
@@ -32,7 +32,7 @@ END$$
 DELIMITER ;
 
 SELECT * FROM MEMBER;
-CALL AddMember('Ravi Sharma', 'ravi.sharma@example.com');
+CALL AddMember('Navreet Singh', 'navreet.singh@example.com');
 
 -- Issue a Book --
 DELIMITER $$
@@ -54,7 +54,7 @@ DELIMITER ;
 
 SELECT * FROM ISSUE_RETURN;
 SELECT * FROM BOOKS;
-CALL IssueBook(11, 3, 1, '2025-11-10');
+CALL IssueBook(6, 3, 1, '2025-11-10');
 
 -- Return a Book -- 
 DELIMITER $$
@@ -83,7 +83,8 @@ DELIMITER ;
 
 SELECT * FROM Issue_Return;
 SELECT * FROM BOOKS;
-CALL ReturnBook(28, '2025-11-12');
+SELECT * FROM FINE;
+CALL ReturnBook(17, '2025-11-03');
 
 -- Show All Available Books --
 DELIMITER $$
@@ -149,7 +150,7 @@ DELIMITER ;
 
 SELECT * FROM ISSUE_RETURN;
 SELECT * FROM FINE;
-CALL PayFine(2);
+CALL PayFine(4);
 
 -- Get Member Borrow History --
 DELIMITER $$

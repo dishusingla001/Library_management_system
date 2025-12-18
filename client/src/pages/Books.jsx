@@ -13,10 +13,7 @@ function Books() {
     title: '',
     author: '',
     publisher: '',
-    publication_year: '',
-    category: '',
-    copies_total: 1,
-    copies_available: 1
+    availability_status: 'Available'
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -168,10 +165,7 @@ function Books() {
                 <th>Title</th>
                 <th>Author</th>
                 <th>Publisher</th>
-                <th>Year</th>
-                <th>Category</th>
-                <th>Copies</th>
-                <th>Available</th>
+                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -181,14 +175,11 @@ function Books() {
                   <td>{book.id}</td>
                   <td>{book.isbn || 'N/A'}</td>
                   <td>{book.title}</td>
-                  <td>{book.author}</td>
+                  <td>{book.author || 'N/A'}</td>
                   <td>{book.publisher || 'N/A'}</td>
-                  <td>{book.publication_year || 'N/A'}</td>
-                  <td>{book.category || 'N/A'}</td>
-                  <td>{book.copies_total}</td>
                   <td>
-                    <span className={`badge ${book.copies_available > 0 ? 'badge-success' : 'badge-danger'}`}>
-                      {book.copies_available}
+                    <span className={`badge ${book.availability_status === 'Available' ? 'badge-success' : 'badge-danger'}`}>
+                      {book.availability_status}
                     </span>
                   </td>
                   <td>
